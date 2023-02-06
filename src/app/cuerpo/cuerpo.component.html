@@ -1,14 +1,57 @@
-<button (click)="lanzaPeticionAJAX()">Peticion AJAX</button>
-<h1 *ngIf="nombreMoneda">Criptomonedas</h1>
-<img src="{{imagenMoneda}}" alt="">
-<h3>{{nombreMoneda}}</h3>
-<h4>{{categoria}}</h4>
-<p>{{descripcion}}</p>
+<div class="d-flex">
+    <div id="selectorDeMonedas" class="bg-dark py-5 px-5">
+        <ul>
+            <li *ngFor="let moneda of datosAPI.listaMonedas | slice: (page-1) * pageSize : page * pageSize">
+                <button class="border border-light text-light bg-dark  rounded" (click)="monedaSeleccionada(moneda)">{{moneda.name}}</button>
+            </li>
+        </ul>
+        <ngb-pagination
+        [collectionSize]="this.datosAPI.listaMonedas.length"
+        [pageSize]="pageSize"
+        [directionLinks]="false"
+        [(page)]="page"
+        class="w-100"
+        >
+        </ngb-pagination>
+    </div>
+    
+    <!--  -->
+    <div id="listarMonedas" class="mx-5">
+        <table>
+            <thead>
+                <tr>
+                    <th class="border-bottom border-dark">Imagen</th>
+                    <th class="border-bottom border-dark">Nombre</th>
+                    <th class="border-bottom border-dark">Simbolo</th>
+                    <th class="border-bottom border-dark">Precio (€)</th>
+                    <th class="border-bottom border-dark">Capitalizacion (€)</th>
+                    <th class="border-bottom border-dark">Volumen (€)</th>
+                    <th class="border-bottom border-dark">Precio mas alto (24h)</th>
+                    <th class="border-bottom border-dark">Precio mas bajo (24h)</th>
+                    <th class="border-bottom border-dark">Detalles</th>
+                    <th class="border-bottom border-dark">Acciones</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let moneda of listaSeleccionadas" class="border-bottom border-dark">
+                <td class="border-bottom border-dark">
+                    <img src="{{ moneda.image.large }}" alt="{{ moneda.name }}" width="50px" routerLink="/detalles/{{moneda.id}}"/>
+                </td>
+                <td class="border-bottom border-dark">{{ moneda.name }}</td>
+                <td class="border-bottom border-dark">{{ moneda.symbol }}</td>
+                <td class="border-bottom border-dark">{{ moneda.market_data.current_price.eur }}</td>
+                <td class="border-bottom border-dark">{{ moneda.market_data.market_cap.eur }}</td>
+                <td class="border-bottom border-dark">{{ moneda.market_data.total_volume.eur }}</td>
+                <td class="border-bottom border-dark">{{ moneda.market_data.high_24h.eur }}</td>
+                <td class="border-bottom border-dark">{{ moneda.market_data.low_24h.eur }}</td>
+                <td class="border-bottom border-dark">
+                    <i routerLink="/detalles/{{moneda.id}}" class="fa-solid fa-circle-info"></i>
+                </td>
+                <td class="border-bottom border-dark">
+                    <i (click)="borrarMoneda(moneda)" class="fa-solid fa-circle-xmark"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 
-<ul>
-    <li *ngFor="let dato of datosDeBD | async">
-        <p>El usuario <b>{{dato.usuario}}</b> sigue la moneda <b>{{dato.moneda}}</b></p>
-    </li>
-</ul>
 
-<button (click)="escribirEnDB()">Escribe en BD</button>

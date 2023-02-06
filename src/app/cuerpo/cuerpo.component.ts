@@ -12,36 +12,53 @@ import { Observable } from 'rxjs';
 })
 export class CuerpoComponent {
 
-  nombreMoneda="";
-  categoria="";
-  imagenMoneda="";
-  descripcion="";
+  page=1;
+  pageSize=10;
 
-  datosDeBD: Observable<any[]>;
+  listaSeleccionadas= new Array();
 
-  constructor(private http: HttpClient, public firestore: Firestore) { 
-    const datos = collection(firestore, 'items');
-    this.datosDeBD = collectionData(datos);
-    // console.log(datos);
-    // this.datosDeBD = collectionData(query(datos, where("nombre", "==", "pepe")));
-    // console.log(this.datosDeBD);
+  // datosDeBD: Observable<any[]>;
+
+  constructor(private http: HttpClient, public firestore: Firestore, public datosAPI: AccesoApiService) { 
+    // const datos = collection(firestore, 'items');
+    // this.datosDeBD = collectionData(datos);
   }
 
-  lanzaPeticionAJAX() {
-    this.http.get("https://api.coingecko.com/api/v3/coins/bitcoin").subscribe(
-      (data:any) => {
-        console.log(data);
-        this.nombreMoneda = data.name;
-        this.categoria = data.categories[0];
-        this.imagenMoneda = data.image.small;
-        this.descripcion = data.description.en;
-      })
+  
+  monedaSeleccionada(moneda:any){
+    this.listaSeleccionadas.push(moneda);
+    localStorage.setItem("moneda", JSON.stringify(this.listaSeleccionadas));
   }
 
-  escribirEnDB(){
-    addDoc(collection(this.firestore, "items"), {
-      usuario: "Luis",
-      moneda: "eth"
-    });
+  ngOnInit(){
+    if(localStorage.getItem("moneda") != null)
+      this.listaSeleccionadas = JSON.parse(localStorage.getItem("moneda")!);
+    else
+      this.listaSeleccionadas = new Array();
   }
+
+  borrarMoneda(moneda:any){
+    this.listaSeleccionadas.splice(this.listaSeleccionadas.indexOf(moneda), 1);
+    localStorage.setItem("moneda", JSON.stringify(this.listaSeleccionadas));
+  }
+
+
+  // lanzaPeticionAJAX() {
+  //   this.http.get("https://api.coingecko.com/api/v3/coins/bitcoin").subscribe(
+  //     (data:any) => {
+  //       console.log(data);
+  //       // this.nombreMoneda = data.name;
+  //       // this.categoria = data.categories[0];
+  //       // this.imagenMoneda = data.image.small;
+  //       // this.descripcion = data.description.en;
+  //     })
+  // }
+
+  // escribirEnDB(){
+  //   addDoc(collection(this.firestore, "items"), {
+  //     usuario: "Luis",
+  //     moneda: "eth"
+  //   });
+  // }
+
 }

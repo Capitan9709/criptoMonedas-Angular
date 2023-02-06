@@ -1,0 +1,14 @@
+ul{
+    list-style-type: none;
+}
+td, th{
+    text-align: center;
+}
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+    background-color: black !important;
+    color: white;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+    background-color: green !important;
+}

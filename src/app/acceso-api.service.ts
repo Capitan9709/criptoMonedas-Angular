@@ -19,4 +19,8 @@ export class AccesoApiService {
         this.listaMonedas = data;
       })
   }
+
+  obtenerMoneda(id: string){
+    return this.http.get("https://api.coingecko.com/api/v3/coins/" + id);
+  }
 }

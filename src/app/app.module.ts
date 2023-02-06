@@ -15,6 +15,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DatosMonedasComponent } from './datos-monedas/datos-monedas.component';
+import { DetallesMonedaComponent } from './detalles-moneda/detalles-moneda.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DatosMonedasComponent } from './datos-monedas/datos-monedas.component';
     CuerpoComponent,
     PieComponent,
     LandingPageComponent,
-    DatosMonedasComponent
+    DatosMonedasComponent,
+    DetallesMonedaComponent
   ],
   imports: [
     BrowserModule,
