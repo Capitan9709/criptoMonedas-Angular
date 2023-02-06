@@ -1,0 +1,15 @@
+<h1>Criptomonedas</h1>
+<ul>
+    <li *ngFor="let moneda of datosAPI.listaMonedas | slice: (page-1) * pageSize : page * pageSize">
+        <button >{{moneda.name}}</button>
+    </li>
+</ul>
+<ngb-pagination
+[collectionSize]="this.datosAPI.listaMonedas.length"
+[pageSize]="pageSize"
+[directionLinks]="false"
+[(page)]="page"
+class="w-100"
+>
+</ngb-pagination>
+<!-- (click)="crearLista({{moneda.id}})" -->

@@ -1,0 +1,14 @@
+<button (click)="lanzaPeticionAJAX()">Peticion AJAX</button>
+<h1 *ngIf="nombreMoneda">Criptomonedas</h1>
+<img src="{{imagenMoneda}}" alt="">
+<h3>{{nombreMoneda}}</h3>
+<h4>{{categoria}}</h4>
+<p>{{descripcion}}</p>
+
+<ul>
+    <li *ngFor="let dato of datosDeBD | async">
+        <p>El usuario <b>{{dato.usuario}}</b> sigue la moneda <b>{{dato.moneda}}</b></p>
+    </li>
+</ul>
+
+<button (click)="escribirEnDB()">Escribe en BD</button>

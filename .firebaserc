@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-crypto-35048": {
+      "hosting": {
+        "criptoMonedas": [
+          "angular-crypto-35048"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-crypto-35048"
+  }
+}
