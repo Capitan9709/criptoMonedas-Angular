@@ -1,5 +1,5 @@
-<div class="d-flex">
-    <div id="selectorDeMonedas" class="bg-dark py-5 px-5">
+<div class="d-flex bg-dark">
+    <div id="selectorDeMonedas" class="bg-dark py-5 px-5 my-5">
         <ul>
             <li *ngFor="let moneda of datosAPI.listaMonedas | slice: (page-1) * pageSize : page * pageSize">
                 <button class="border border-light text-light bg-dark  rounded" (click)="monedaSeleccionada(moneda)">{{moneda.name}}</button>
@@ -16,37 +16,37 @@
     </div>
     
     <!--  -->
-    <div id="listarMonedas" class="mx-5">
-        <table>
+    <div id="listarMonedas" class="mx-5 my-5 bg-dark">
+        <table class="text-light">
             <thead>
                 <tr>
-                    <th class="border-bottom border-dark">Imagen</th>
-                    <th class="border-bottom border-dark">Nombre</th>
-                    <th class="border-bottom border-dark">Simbolo</th>
-                    <th class="border-bottom border-dark">Precio (€)</th>
-                    <th class="border-bottom border-dark">Capitalizacion (€)</th>
-                    <th class="border-bottom border-dark">Volumen (€)</th>
-                    <th class="border-bottom border-dark">Precio mas alto (24h)</th>
-                    <th class="border-bottom border-dark">Precio mas bajo (24h)</th>
-                    <th class="border-bottom border-dark">Detalles</th>
-                    <th class="border-bottom border-dark">Acciones</th>
+                    <th class="border-bottom border-light">Imagen</th>
+                    <th class="border-bottom border-light">Nombre</th>
+                    <th class="border-bottom border-light">Simbolo</th>
+                    <th class="border-bottom border-light">Precio (€)</th>
+                    <th class="border-bottom border-light">Capitalizacion (€)</th>
+                    <th class="border-bottom border-light">Volumen (€)</th>
+                    <th class="border-bottom border-light">Precio mas alto (24h)</th>
+                    <th class="border-bottom border-light">Precio mas bajo (24h)</th>
+                    <th class="border-bottom border-light">Detalles</th>
+                    <th class="border-bottom border-light">Acciones</th>
                 </tr>
             </thead>
             <tr *ngFor="let moneda of listaSeleccionadas" class="border-bottom border-dark">
-                <td class="border-bottom border-dark">
+                <td class="border-bottom border-light">
                     <img src="{{ moneda.image.large }}" alt="{{ moneda.name }}" width="50px" routerLink="/detalles/{{moneda.id}}"/>
                 </td>
-                <td class="border-bottom border-dark">{{ moneda.name }}</td>
-                <td class="border-bottom border-dark">{{ moneda.symbol }}</td>
-                <td class="border-bottom border-dark">{{ moneda.market_data.current_price.eur }}</td>
-                <td class="border-bottom border-dark">{{ moneda.market_data.market_cap.eur }}</td>
-                <td class="border-bottom border-dark">{{ moneda.market_data.total_volume.eur }}</td>
-                <td class="border-bottom border-dark">{{ moneda.market_data.high_24h.eur }}</td>
-                <td class="border-bottom border-dark">{{ moneda.market_data.low_24h.eur }}</td>
-                <td class="border-bottom border-dark">
+                <td class="border-bottom border-light">{{ moneda.name }}</td>
+                <td class="border-bottom border-light">{{ moneda.symbol }}</td>
+                <td class="border-bottom border-light">{{ moneda.market_data.current_price.eur }}</td>
+                <td class="border-bottom border-light">{{ moneda.market_data.market_cap.eur }}</td>
+                <td class="border-bottom border-light">{{ moneda.market_data.total_volume.eur }}</td>
+                <td class="border-bottom border-light">{{ moneda.market_data.high_24h.eur }}</td>
+                <td class="border-bottom border-light">{{ moneda.market_data.low_24h.eur }}</td>
+                <td class="border-bottom border-light">
                     <i routerLink="/detalles/{{moneda.id}}" class="fa-solid fa-circle-info"></i>
                 </td>
-                <td class="border-bottom border-dark">
+                <td class="border-bottom border-light">
                     <i (click)="borrarMoneda(moneda)" class="fa-solid fa-circle-xmark"></i>
                 </td>
             </tr>

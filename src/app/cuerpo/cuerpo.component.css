@@ -4,6 +4,24 @@ ul{
 td, th{
     text-align: center;
 }
+.fa-circle-info{
+    transition: 0.5s;
+    cursor: pointer;
+}
+.fa-circle-info:hover{
+    transform: scale(1.5);
+    color: green;
+    transition: 0.5s;
+}
+.fa-circle-xmark{
+    transition: 0.5s;
+    cursor: pointer;
+}
+.fa-circle-xmark:hover{
+    transform: scale(1.5);
+    color: red;
+    transition: 0.5s;
+}
 ngb-pagination ::ng-deep ul > li:not(.active) > a {
     background-color: black !important;
     color: white;

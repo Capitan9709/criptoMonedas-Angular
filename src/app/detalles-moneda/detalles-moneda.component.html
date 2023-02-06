@@ -1,6 +1,6 @@
 <app-cabecera></app-cabecera>
 
-<div class="card mb-3" >
+<div class="mb-3 py-5 bg-dark" >
     <div class="row g-0">
       <div class="col-md-6 d-flex justify-content-center align-items-center">
         <img 
@@ -11,31 +11,31 @@
       </div>
       <div class="col-md-6">
         <div class="card-body">
-          <h5 class="card-title">{{datoMoneda.name}}</h5>
-          <p class="card-text">Simbolo: {{ datoMoneda.symbol }}</p>
-          <p class="card-text">Precio (€): {{ datoMoneda.market_data.current_price.eur }}</p>
-          <p class="card-text">Creado en: {{datoMoneda.genesis_date}}</p>
+          <h5 class="card-titl text-light">{{datoMoneda.name}}</h5>
+          <p class="card-text text-light">Simbolo: {{ datoMoneda.symbol }}</p>
+          <p class="card-text text-light">Precio (€): {{ datoMoneda.market_data.current_price.eur }}</p>
+          <p class="card-text text-light">Creado en: {{datoMoneda.genesis_date}}</p>
           <p class="card-text mt-4 mb-4">
-            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
               See description
             </a>
           </p>
         <div class="collapse" id="collapseExample">
-            <div class="card card-text">
-                <p *ngIf="datoMoneda.description.es != ''" [innerHTML]="datoMoneda.description.es"></p>
-                <p *ngIf="datoMoneda.description.es == ''" [innerHTML]="datoMoneda.description.en"></p>
-                <p *ngIf="datoMoneda.description.es == '' && datoMoneda.description.en == ''">Description not available</p>
+            <div class="card card-text bg-dark">
+                <p class="text-light" *ngIf="datoMoneda.description.es != ''" [innerHTML]="datoMoneda.description.es"></p>
+                <p class="text-light" *ngIf="datoMoneda.description.es == ''" [innerHTML]="datoMoneda.description.en"></p>
+                <p class="text-light" *ngIf="datoMoneda.description.es == '' && datoMoneda.description.en == ''">Description not available</p>
             </div>
         </div>
-        <div class="d-flex gap-5 mb-5 mt-5">
-            <a href="{{datoMoneda.links.homepage[0]}}" target="_blank"><i class="fa-solid fa-house"></i></a>
-            <a href="https://twitter.com/{{datoMoneda.links.twitter_screen_name}}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-            <a href="{{datoMoneda.links.repos_url.github[0]}}" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <div class="d-flex gap-5 mb-5 mt-5 pt-5 ">
+            <a href="{{datoMoneda.links.homepage[0]}}" target="_blank"><i class="fa-solid fa-house text-success"></i></a>
+            <a href="https://twitter.com/{{datoMoneda.links.twitter_screen_name}}" target="_blank"><i class="fa-brands fa-twitter text-success"></i></a>
+            <a href="{{datoMoneda.links.repos_url.github[0]}}" target="_blank"><i class="fa-brands fa-github text-success"></i></a>
         </div>
         </div>
       </div>
     </div>
+    <button class="btn btn-success ms-3" routerLink="/monedas">Volver</button>
 </div>
-<button class="btn btn-primary" routerLink="/monedas">Volver</button>
 
 <app-pie></app-pie>
